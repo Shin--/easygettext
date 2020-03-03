@@ -269,6 +269,14 @@ exports.Extractor = class Extractor {
     this.processStrings(extractedStringsFromScript);
   }
 
+  parseTypeScript(filename, content) {
+    const tsContent = flowRemoveTypes(content).toString();
+
+    const extractedStringsFromScript = jsExtractor.extractStringsFromTypeScript(filename, tsContent);
+
+    this.processStrings(extractedStringsFromScript);
+  }
+
   toString() {
     const catalog = new Pofile();
     catalog.headers = {

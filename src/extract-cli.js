@@ -81,6 +81,8 @@ files.forEach(function(filename) {
 
     if (lang === 'js') {
       extractor.parseJavascript(file, data);
+    } else if (lang === 'ts') {
+      extractor.parseTypeScript(file, data);
     }
   } catch (e) {
     console.error(`[${PROGRAM_NAME}] could not read: '${filename}`);

@@ -104,10 +104,8 @@ function getGettextEntriesFromScript(script) {
   return extractedEntries;
 }
 
-function extractStringsFromJavascript(filename, script) {
-  const gettextEntries =  getGettextEntriesFromScript(script);
-
-  return gettextEntries.map((entry) => {
+function getTextEntries(filename, textEntries) {
+  return textEntries.map((entry) => {
     return Object.assign(
       {},
       {
@@ -124,6 +122,15 @@ function extractStringsFromJavascript(filename, script) {
   });
 }
 
+function extractStringsFromJavascript(filename, script) {
+  return getTextEntries(filename, getGettextEntriesFromScript(script));
+}
+
+function extractStringsFromTypeScript(filename, script) {
+  return getTextEntries(filename, getGettextEntriesFromScript(script));
+}
+
 module.exports = {
   extractStringsFromJavascript,
+  extractStringsFromTypeScript,
 };
